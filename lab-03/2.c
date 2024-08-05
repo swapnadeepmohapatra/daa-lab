@@ -42,10 +42,10 @@ int main(int argc, char *argv[]) {
     FILE *outputFile = fopen(outputFileName, "w");
     
     for (int i = 0; i < n; i++) {
-        fprintf(outputFile, "%d ", arr[i]);
+        fprintf(outputFile, "%d\n", arr[i]);
     }
-    fprintf(outputFile, "\n");
-    fprintf(outputFile, "Number of comparisons: %d\n", comparisonCount);
+    
+    printf("Number of comparisons: %d\n", comparisonCount);
 
     fclose(outputFile);
 

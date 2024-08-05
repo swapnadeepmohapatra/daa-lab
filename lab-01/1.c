@@ -30,7 +30,7 @@ void findSecondSmallestAndLargest(int arr[], int n, int *secondSmallest, int *se
 }
 
 
-int main() {
+void main() {
     const char *filePath = "array.txt";
     int arr[100];
     int n;
@@ -50,16 +50,10 @@ int main() {
 
     fclose(file);
 
-    readArrayFromFile(filePath, arr, &n);
-
-
     int secondSmallest, secondLargest;
     
     findSecondSmallestAndLargest(arr, n, &secondSmallest, &secondLargest);
 
     printf("Second smallest element: %d\n", secondSmallest);
     printf("Second largest element: %d\n", secondLargest);
-
-
-    return 0;
 }

@@ -8,7 +8,7 @@ void calculatePrefixSum(int arr[], int n, int prefixSum[]) {
     }
 }
 
-int main() {
+void main() {
     const char *filePath = "array.txt";
     int arr[100];
     int prefixSum[100];
@@ -42,6 +42,4 @@ int main() {
         printf("%d ", prefixSum[i]);
     }
     printf("\n");
-
-    return 0;
 }

@@ -3,30 +3,21 @@
 
 
 int findTotalDuplicates(int arr[], int n) {
-    int totalDuplicates = 0;
-    int counted[n]; 
+    int maxCount = 0;
 
     for (int i = 0; i < n; i++) {
-        counted[i] = 0; 
-    }
-
-    for (int i = 0; i < n; i++) {
-        if (counted[i] == 1) {
-            continue;
-        }
         int count = 0;
         for (int j = 0; j < n; j++) {
             if (arr[i] == arr[j]) {
                 count++;
             }
         }
-        if (count > 1) {
-            totalDuplicates += count - 1; 
+        if (count > maxCount) {
+            maxCount = count;
         }
-        counted[i] = 1;
     }
 
-    return totalDuplicates;
+    return maxCount;
 }
 
 int findMostRepeatingElement(int arr[], int n) {
@@ -49,7 +40,7 @@ int findMostRepeatingElement(int arr[], int n) {
     return mostRepeatingElement;
 }
 
-int main() {
+void main() {
     const char *filePath = "array.txt";
     int arr[100];
     int prefixSum[100];
@@ -75,6 +66,4 @@ int main() {
 
     printf("Total number of duplicate elements: %d\n", totalDuplicates);
     printf("Most repeating element: %d\n", mostRepeatingElement);
-
-    return 0;
 }

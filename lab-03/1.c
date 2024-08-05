@@ -83,11 +83,10 @@ int main(int argc, char *argv[]) {
     FILE *outputFile = fopen(outputFileName, "w");
     
     for (int i = 0; i < n; i++) {
-        fprintf(outputFile, "%d ", arr[i]);
+        fprintf(outputFile, "%d\n", arr[i]);
     }
-    fprintf(outputFile, "\n");
-    fprintf(outputFile, "Number of comparisons: %d\n", comparisonCount);
-    fprintf(outputFile, "Time taken to sort the array: %f seconds\n", cpu_time_used);
+    printf("Number of comparisons: %d\n", comparisonCount);
+    printf("Time taken to sort the array: %f seconds\n", cpu_time_used);
 
     fclose(outputFile);
 
