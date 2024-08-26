@@ -10,39 +10,36 @@ void swap(int *a, int *b)
     *b = temp;
 }
 
-int partition(int arr[], int low, int high)
+void heapify(int arr[], int n, int i)
 {
-    int pivot = arr[high];
-    int i = low - 1;
+    comparisonCount++;
 
-    for (int j = low; j < high; j++)
+    int largest = i;
+    int left = 2 * i + 1;
+    int right = 2 * i + 2;
+
+    if (left < n && arr[left] > arr[largest])
+        largest = left;
+
+    if (right < n && arr[right] > arr[largest])
+        largest = right;
+
+    if (largest != i)
     {
-        comparisonCount++;
-        if (arr[j] <= pivot)
-        {
-            i++;
-            swap(&arr[i], &arr[j]);
-        }
+        swap(&arr[i], &arr[largest]);
+        heapify(arr, n, largest);
     }
-    swap(&arr[i + 1], &arr[high]);
-    return (i + 1);
 }
 
-int randomizedPartition(int arr[], int low, int high)
+void heapSort(int arr[], int n)
 {
-    int randomIndex = low + rand() % (high - low + 1);
-    swap(&arr[randomIndex], &arr[high]);
-    return partition(arr, low, high);
-}
+    for (int i = n / 2 - 1; i >= 0; i--)
+        heapify(arr, n, i);
 
-void quickSort(int arr[], int low, int high)
-{
-    if (low < high)
+    for (int i = n - 1; i >= 0; i--)
     {
-        int pi = randomizedPartition(arr, low, high);
-
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
+        swap(&arr[0], &arr[i]);
+        heapify(arr, i, 0);
     }
 }
 
@@ -64,7 +61,9 @@ int main(int argc, char *argv[])
 
     fclose(inputFile);
 
-    quickSort(arr, 0, n - 1);
+    comparisonCount = 0;
+
+    heapSort(arr, n);
 
     FILE *outputFile = fopen(outputFileName, "w");
 
